@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
@@ -14,9 +15,21 @@ namespace GrpcGreeter
 
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
         {
+            Console.WriteLine("Saying hello...");
+            
             return Task.FromResult(new HelloReply
             {
                 Message = "Hello " + request.Name
+            });
+        }
+
+        public override Task<HelloReply> SayHelloAgain(HelloRequest request, ServerCallContext context)
+        {
+            Console.WriteLine("Saying hello again...");
+            
+            return Task.FromResult(new HelloReply
+            {
+                Message = "Hello again" + request.Name
             });
         }
     }

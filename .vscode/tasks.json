@@ -37,6 +37,45 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Create migration",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "migrations",
+                "add",
+                "${input:migration_name}",
+                "--project",
+                "${workspaceFolder}/DataAccess/DataAccess.csproj",
+                "--configuration",
+                "Development"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Update DEV database",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "database",
+                "update",
+                "--project",
+                "${workspaceFolder}/DataAccess/DataAccess.csproj",
+                "--configuration",
+                "Development"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+    ],
+    "inputs": [
+        {
+            "id": "migration_name",
+            "description": "Migration name:",
+            "default": "NewMigration",
+            "type": "promptString"
         }
-    ]
+    ],
 }
